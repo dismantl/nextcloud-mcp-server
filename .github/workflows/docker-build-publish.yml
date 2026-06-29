@@ -4,6 +4,12 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'The tag to build (e.g. v0.126.4)'
+        required: true
+        type: string
   workflow_call:
     inputs:
       tag:
@@ -12,7 +18,7 @@ on:
         type: string
 
 env:
-  IMAGE_NAME: ghcr.io/cbcoutinho/nextcloud-mcp-server
+  IMAGE_NAME: ghcr.io/${{ github.repository }}
 
 jobs:
   resolve-tag:
